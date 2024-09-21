@@ -1,4 +1,4 @@
-* alpaca2 version:
+* alpaca version:
 * Python version:
 * Operating System:
 
