@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-"""Tests for `alpaca2` package."""
+"""Tests for `alpaca` package."""
 
 import pytest
 
 
-from alpaca2 import alpaca2
+from alpaca import alpaca
 
 
 @pytest.fixture
