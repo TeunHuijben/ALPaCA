@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "alpaca"
 version = "0.1.0"
 description = "Analytical PSF calculator for emitter near spherical nanoparticle"
-readme = "README.rst"
+readme = "README.md"
 authors = [
   {name = "Teun Huijben", email = "teunhuijben@hotmail.com"}
 ]
@@ -36,7 +36,7 @@ changelog = "https://github.com/TeunHuijben/alpaca2/blob/master/changelog.md"
 homepage = "https://github.com/TeunHuijben/alpaca2"
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = {"" = "alpaca"}
 
 [tool.setuptools.package-data]
 "*" = ["*.*"]
