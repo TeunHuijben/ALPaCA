@@ -2,6 +2,7 @@ import numpy as np
 
 class eps:
 
+    #GOLD
     def epsAu(
             lambda_nm: float
     ) -> float:

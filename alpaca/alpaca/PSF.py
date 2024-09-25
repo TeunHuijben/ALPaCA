@@ -1,58 +1,59 @@
 import numpy as np
+from alpaca.parameters import params_general
+from utils.epsilon import eps
 
-class PSF:
+class PSFclass:
+    def __init__(self,params: params_general):
+        self.params = params
+        
+        # Assign parameters from params instance
+        self.radius = params.radius
+        self.d = params.d
+        self.lam = params.lam
+        self.epsilonM = params.epsilonM
+        self.withoutParticle = params.withoutParticle
+        self.focus_overwrite = params.focus_overwrite
+        self.focus_overwrite_value = params.focus_overwrite_value
+        self.angleDipole = params.angleDipole
+        self.alpha = params.alpha
+        self.beta = params.beta
+        self.gamma = params.gamma
+        self.dist_NP_glass = params.dist_NP_glass
+        self.mode = params.mode
+        self.n_water = params.n_water
+        self.n_glass = params.n_glass
+        self.l_max = params.l_max
+        self.m_max = params.m_max
+        self.N = params.N
+        self.r = params.r
+        self.M = params.M
+        self.NA = params.NA
+        self.z0 = params.z0
+        self.num_px = params.num_px
+        
+        # Other calculations
+        self.epsilonIn = eps.epsAu(params.lam)
+        self.px_size = 65 * params.M
 
-    def __init__(self,radius=100, d=5, lam=680, epsilonM=1.333**2, withoutParticle=False, focus_overwrite=False, focus_overwrite_value=0,
-                angleDipole=0, alpha=0, beta=0, gamma=0, dist_NP_glass=6, mode='solid',
-                n_water=1.333, n_glass=1.52, l_max=10, m_max=3, N=100, r=1e9, M=100, NA=1.49, z0=0, num_px=10):
-
-        self.radius                 = radius
-        self.d                      = d
-        self.lam                    = lam
-        self.epsilonM               = epsilonM
-        self.withoutParticle        = withoutParticle
-        self.focus_overwrite        = focus_overwrite
-        self.focus_overwrite_value  = focus_overwrite_value
-
-        self.angleDipole            = angleDipole
-        self.alpha                  = alpha
-        self.beta                   = beta
-        self.gamma                  = gamma
-        self.dist_NP_glass          = dist_NP_glass
-        self.mode                   = mode
-
-        self.n_water                = n_water
-        self.n_glass                = n_glass
-        self.l_max                  = l_max
-        self.m_max                  = m_max
-        self.N                      = N
-        self.r                      = r
-        self.M                      = M
-        self.NA                     = NA
-        self.z0                     = z0
-        self.num_px                 = num_px
-
-        self.epsilonIn              = eps.epsAu(lam)
-        self.px_size                = 65 * M
-
-        radius_list = [radius]
-        epsilon_list = [self.epsilonIn, epsilonM]
+        self.radius_list = [params.radius]
+        self.epsilon_list = [self.epsilonIn, params.epsilonM]
 
     def calc_PSF(self):
         #> main function to calculate the PSF
 
-        # STEP 1 - COEFFS+SWE
-        k, swe_scatt_manual, swe_initial_manual, Mie_coeffs = self.calc_coeffs_and_fill_swe()                   #calculate coeffs in Python
+        # # STEP 1 - COEFFS+SWE
+        # k, swe_scatt_manual, swe_initial_manual = self.calc_coeffs_and_fill_swe()                   #calculate coeffs in Python
 
-        #STEP 2 - ROTATE SWE
-        swe_scatt_manual,swe_initial_manual                 = self.rotate_SWEs(swe_scatt_manual,swe_initial_manual)
+        # #STEP 2 - ROTATE SWE
+        # swe_scatt_manual,swe_initial_manual                 = self.rotate_SWEs(swe_scatt_manual,swe_initial_manual)
 
-        #STEP 3 - SPA
-        spa_vectors, spa_fields                             = self.do_SPA_unitVec(swe_scatt_manual+swe_initial_manual,k)
+        # #STEP 3 - SPA
+        # spa_vectors, spa_fields                             = self.do_SPA_unitVec(swe_scatt_manual+swe_initial_manual,k)
 
-        #STEP 4 - FOCUS
-        integral_output                                     = self.do_focus_integral_fast_unitVec(spa_vectors,spa_fields)
+        # #STEP 4 - FOCUS
+        # integral_output                                     = self.do_focus_integral_fast_unitVec(spa_vectors,spa_fields)
 
+        integral_output = 5
         return integral_output
 
 
@@ -70,7 +71,6 @@ class PSF:
         xi_sx = s*x * (scipy.special.spherical_jn(n_list, s*x) +1j*scipy.special.spherical_yn(n_list, s*x))
         Dxi_sx = s*x * (scipy.special.spherical_jn(n_list-1, s*x) +1j*scipy.special.spherical_yn(n_list-1, s*x)) - n_list * xi_sx/s/x
         return psi_x, psi_sx, Dpsi_x, Dpsi_sx, xi_x, xi_sx, Dxi_x, Dxi_sx
-
 
     def Suscep_coreShell(self,a_list,epsilon_list):
         #> calculate the susceptibilities Gamma/Delta
@@ -114,7 +114,6 @@ class PSF:
             Delta_list.append(Delta)
 
         return Gamma, Delta
-
 
     def calc_coefficients(self):
         #> calculate the Mie coefficients
@@ -264,8 +263,7 @@ class PSF:
         swe_scatt_manual = swe_scat_man_perp + swe_scat_man_para
         swe_initial_manual = swe_init_man_perp + swe_init_man_para
 
-        return k, swe_scatt_manual, swe_initial_manual, Mie_coeffs
-
+        return k, swe_scatt_manual, swe_initial_manual
 
     def rotate_SWEs(self, swe_scatt_manual, swe_initial_manual):
         #> rotate the emitter around the NP (by rotating the SWE)
@@ -275,7 +273,6 @@ class PSF:
         swe_initial_manual.coefficients = np.matmul(D,swe_initial_manual.coefficients)
 
         return swe_scatt_manual,swe_initial_manual
-
 
     def do_SPA_unitVec(self, swe_to_use, k):
         #> perform stationary phase approximation (=SWE to PWE)
@@ -383,7 +380,6 @@ class PSF:
         fields['Hzs_spa'] = Hzs_spa
 
         return vectors, fields
-
 
     def do_focus_integral_fast_unitVec(self,vectors,fields):
         #calculate the focussing integral
