@@ -1,1 +1,1 @@
-"""Unit test package for alpaca2."""
+"""Unit test package for alpaca."""
