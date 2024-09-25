@@ -7,7 +7,7 @@ from utils.epsilon import eps
 from vendored.smuthi.fields import multi_to_single_index
 from vendored.smuthi.transformations import block_rotation_matrix_D_svwf, swe_to_pwe_conversion
 from vendored.smuthi.layers import LayerSystem
-
+from vendored.smuthi.vwf import plane_vector_wave_function
 
 
 class PSFclass:
@@ -59,12 +59,9 @@ class PSFclass:
         spa_vectors, spa_fields                 = self.do_SPA_unitVec(swe_scatt_manual+swe_initial_manual,k)
 
         # #STEP 4 - FOCUS
-        # integral_output                                     = self.do_focus_integral_fast_unitVec(spa_vectors,spa_fields)
+        integral_output                         = self.do_focus_integral_fast_unitVec(spa_vectors,spa_fields)
 
-        integral_output = 5
         return integral_output
-
-
 
     def Suscep_helpers(self,n_list,x,s):
         #> helper function to calculate the required elements of the susceptibilities Gamma/Delta
@@ -358,8 +355,8 @@ class PSFclass:
             else:
                 print('WRONG POL in do_SPA_unitVec!!')
 
-            pvwf_direction = vwf.plane_vector_wave_function(0, 0, 0, kappas_vector, alphas_vector, kz_vector, pol)
-            pvwf_direction_H = vwf.plane_vector_wave_function(0, 0, 0, kappas_vector, alphas_vector, kz_vector, pol_H)
+            pvwf_direction = plane_vector_wave_function(0, 0, 0, kappas_vector, alphas_vector, kz_vector, pol)
+            pvwf_direction_H = plane_vector_wave_function(0, 0, 0, kappas_vector, alphas_vector, kz_vector, pol_H)
 
             Exs_spa += pvwf_direction[0] * scalar_fac
             Eys_spa += pvwf_direction[1] * scalar_fac

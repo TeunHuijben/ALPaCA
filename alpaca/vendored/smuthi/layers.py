@@ -376,10 +376,11 @@ def matrix_product(m1, m2):
     Returns:
         matrix product m1 * m2 with same data type as m1 and m2
     """
-    if isinstance(m1, mpmath.matrix) and isinstance(m2, mpmath.matrix):
-        return m1 * m2
-    elif isinstance(m1, np.ndarray) and isinstance(m2, np.ndarray):
-        return np.dot(m1, m2)
+    # if isinstance(m1, mpmath.matrix) and isinstance(m2, mpmath.matrix):
+    #     return m1 * m2
+    # elif isinstance(m1, np.ndarray) and isinstance(m2, np.ndarray):
+        # return np.dot(m1, m2)
+    return np.dot(m1, m2)
 
 
 def matrix_inverse(m):
@@ -390,7 +391,8 @@ def matrix_inverse(m):
     Returns:
         inverse of m with same data type as m1 and m2
     """
-    if isinstance(m, mpmath.matrix):
-        return m ** (-1)
-    elif isinstance(m, np.ndarray):
-        return np.linalg.inv(m)
+    # if isinstance(m, mpmath.matrix):
+    #     return m ** (-1)
+    # elif isinstance(m, np.ndarray):
+    #     return np.linalg.inv(m)
+    return np.linalg.inv(m)
