@@ -5,8 +5,8 @@ import vendored.smuthi.expansion as fldex
 from alpaca.parameters import params_general
 from utils.epsilon import eps
 from vendored.smuthi.fields import multi_to_single_index
-
-
+from vendored.smuthi.transformations import block_rotation_matrix_D_svwf, swe_to_pwe_conversion
+from vendored.smuthi.layers import LayerSystem
 
 
 
@@ -50,13 +50,13 @@ class PSFclass:
         #> main function to calculate the PSF
 
         # # STEP 1 - COEFFS+SWE
-        k, swe_scatt_manual, swe_initial_manual = self.calc_coeffs_and_fill_swe()                   #calculate coeffs in Python
+        k, swe_scatt_manual, swe_initial_manual = self.calc_coeffs_and_fill_swe()
 
         # #STEP 2 - ROTATE SWE
-        # swe_scatt_manual,swe_initial_manual                 = self.rotate_SWEs(swe_scatt_manual,swe_initial_manual)
+        swe_scatt_manual,swe_initial_manual     = self.rotate_SWEs(swe_scatt_manual,swe_initial_manual)
 
         # #STEP 3 - SPA
-        # spa_vectors, spa_fields                             = self.do_SPA_unitVec(swe_scatt_manual+swe_initial_manual,k)
+        spa_vectors, spa_fields                 = self.do_SPA_unitVec(swe_scatt_manual+swe_initial_manual,k)
 
         # #STEP 4 - FOCUS
         # integral_output                                     = self.do_focus_integral_fast_unitVec(spa_vectors,spa_fields)
@@ -275,7 +275,7 @@ class PSFclass:
 
     def rotate_SWEs(self, swe_scatt_manual, swe_initial_manual):
         #> rotate the emitter around the NP (by rotating the SWE)
-        D = trf.block_rotation_matrix_D_svwf(self.l_max,self.m_max,self.alpha,self.beta,self.gamma,False)
+        D = block_rotation_matrix_D_svwf(self.l_max,self.m_max,self.alpha,self.beta,self.gamma,False)
 
         swe_scatt_manual.coefficients   = np.matmul(D,swe_scatt_manual.coefficients)
         swe_initial_manual.coefficients = np.matmul(D,swe_initial_manual.coefficients)
@@ -306,10 +306,10 @@ class PSFclass:
 
 
         ## MAKE PWE DOWNs FOR BOTH FIELDS (scattering + initial)
-        layer_system = smuthi.layers.LayerSystem(thicknesses=[0, 0],
+        layer_system = LayerSystem(thicknesses=[0, 0],
                                                 refractive_indices=[self.n_glass, self.n_water])
 
-        _ , pwe_down = trf.swe_to_pwe_conversion(swe_to_use,
+        _ , pwe_down = swe_to_pwe_conversion(swe_to_use,
                                                     k_parallel=kappa_wanted,
                                                     azimuthal_angles=alphas_wanted,
                                                     layer_system=layer_system, layer_number=0,

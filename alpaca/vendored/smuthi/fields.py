@@ -1,3 +1,5 @@
+import numpy as np
+
 def angular_frequency(vacuum_wavelength):
     """Angular frequency :math:`\omega = 2\pi c / \lambda`
 
@@ -74,3 +76,34 @@ def multi_to_single_index(tau, l, m, l_max, m_max):
         n += m_max * (m_max + 2) + (l - 1 - m_max) * (2 * m_max + 1)
     n += m + min(l, m_max)
     return n
+
+
+def k_z(k_parallel=None, n_effective=None, k=None, omega=None, vacuum_wavelength=None, refractive_index=None):
+    """z-component :math:`k_z=\sqrt{k^2-\kappa^2}` of the wavevector. The branch cut is defined such that the imaginary
+    part is not negative, compare section 2.3.1 of [Egel 2018 dissertation].
+    Not all of the arguments need to be specified.
+
+    Args:
+        k_parallel (numpy ndarray):     In-plane wavenumber :math:`\kappa` (inverse length)
+        n_effective (numpy ndarray):    Effective refractive index :math:`n_\mathrm{eff}`
+        k (float):                      Wavenumber (inverse length)
+        omega (float):                  Angular frequency :math:`\omega` or vacuum wavenumber (inverse length, c=1)
+        vacuum_wavelength (float):      Vacuum wavelength :math:`\lambda` (length)
+        refractive_index (complex):     Refractive index :math:`n_i` of material
+
+    Returns:
+        z-component :math:`k_z` of wavenumber with non-negative imaginary part (inverse length)
+    """
+    if k_parallel is None:
+        if omega is None:
+            omega = angular_frequency(vacuum_wavelength)
+        k_parallel = n_effective * omega
+
+    if k is None:
+        if omega is None:
+            omega = angular_frequency(vacuum_wavelength)
+        k = refractive_index * omega
+
+    kz = np.sqrt(k ** 2 - k_parallel ** 2 + 0j)
+    kz = (kz.imag >= 0) * kz + (kz.imag < 0) * (-kz)  # Branch cut such to prohibit negative imaginary
+    return kz
