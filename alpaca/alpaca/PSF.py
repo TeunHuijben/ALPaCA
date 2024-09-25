@@ -1,6 +1,14 @@
 import numpy as np
+import scipy
+import vendored.smuthi.expansion as fldex
+
 from alpaca.parameters import params_general
 from utils.epsilon import eps
+from vendored.smuthi.fields import multi_to_single_index
+
+
+
+
 
 class PSFclass:
     def __init__(self,params: params_general):
@@ -42,7 +50,7 @@ class PSFclass:
         #> main function to calculate the PSF
 
         # # STEP 1 - COEFFS+SWE
-        # k, swe_scatt_manual, swe_initial_manual = self.calc_coeffs_and_fill_swe()                   #calculate coeffs in Python
+        k, swe_scatt_manual, swe_initial_manual = self.calc_coeffs_and_fill_swe()                   #calculate coeffs in Python
 
         # #STEP 2 - ROTATE SWE
         # swe_scatt_manual,swe_initial_manual                 = self.rotate_SWEs(swe_scatt_manual,swe_initial_manual)
@@ -214,7 +222,7 @@ class PSFclass:
         # REFILL COEFFICIENTS WITH MIE COEFFS
         for m in np.arange(1,self.l_max+1):
             ## Perpendicular:
-            n = flds.multi_to_single_index(tau = 1,       #0>M, 1>N
+            n = multi_to_single_index(tau = 1,       #0>M, 1>N
                                         l = m,         #'n'
                                         m = 0,
                                         l_max=self.l_max,
@@ -224,7 +232,7 @@ class PSFclass:
 
 
             ## Parallel:
-            n = flds.multi_to_single_index(tau = 1,       #0>M, 1>N
+            n = multi_to_single_index(tau = 1,       #0>M, 1>N
                                         l = m,         #'n'
                                         m = 1,
                                         l_max=self.l_max,
@@ -233,7 +241,7 @@ class PSFclass:
             swe_init_man_para.coefficients[n] = px_factor * fn1[m-1]*-1j
 
 
-            n = flds.multi_to_single_index(tau = 1,       #0>M, 1>N
+            n = multi_to_single_index(tau = 1,       #0>M, 1>N
                                         l = m,         #'n'
                                         m = -1,
                                         l_max=self.l_max,
@@ -242,7 +250,7 @@ class PSFclass:
             swe_init_man_para.coefficients[n] = px_factor * fn1[m-1]*-1j
 
 
-            n = flds.multi_to_single_index(tau = 0,       #0>M, 1>N
+            n = multi_to_single_index(tau = 0,       #0>M, 1>N
                                         l = m,         #'n'
                                         m = 1,
                                         l_max=self.l_max,
@@ -251,7 +259,7 @@ class PSFclass:
             swe_init_man_para.coefficients[n] = px_factor * en1[m-1]*-1j
 
 
-            n = flds.multi_to_single_index(tau = 0,       #0>M, 1>N
+            n = multi_to_single_index(tau = 0,       #0>M, 1>N
                                         l = m,         #'n'
                                         m = -1,
                                         l_max=self.l_max,
