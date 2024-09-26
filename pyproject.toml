@@ -27,7 +27,6 @@ dev = [
     "coverage",  # testing
     "mypy",  # linting
     "pytest",  # testing
-    "pytest-cov",  # testing
     "ruff"  # linting
 ]
 
