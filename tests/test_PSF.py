@@ -1,11 +1,11 @@
 import numpy as np
 import numpy.testing as npt
 
-from alpaca.parameters import params_general
+from alpaca.parameters import params_gold
 from alpaca.PSF import PSFclass
 
 def test_refractive_indices():
-    params = params_general()
+    params = params_gold()
     PSF = PSFclass(params)
     image = PSF.calc_PSF()['PSF']
 

@@ -77,7 +77,7 @@ class PSFclass:
         Dxi_sx = s*x * (scipy.special.spherical_jn(n_list-1, s*x) +1j*scipy.special.spherical_yn(n_list-1, s*x)) - n_list * xi_sx/s/x
         return psi_x, psi_sx, Dpsi_x, Dpsi_sx, xi_x, xi_sx, Dxi_x, Dxi_sx
 
-    def Suscep_coreShell(self,a_list,epsilon_list):
+    def Suscep_coreShell(self, a_list, epsilon_list):
         #> calculate the susceptibilities Gamma/Delta
 
         n_list = np.arange(1,self.l_max+1)
@@ -151,11 +151,9 @@ class PSFclass:
         if self.mode=='solid':
             Gamma, Delta = self.Suscep_coreShell([self.radius],[self.epsilonIn,self.epsilonM])
         elif self.mode=='core-shell':
-            Gamma, Delta = self.Suscep_coreShell(self.radius_list,epsilon_list)
+            Gamma, Delta = self.Suscep_coreShell(self.radius_list,self.epsilon_list)
         else:
-            print('UNKNOWN MODE!! (solid or core-shell)')
-            Gamma = NaN
-            Delta = NaN
+            raise ValueError(f"Invalid mode: {self.mode}. Expected 'solid' or 'core-shell'.")
 
         cn1 = Gamma * an1
         dn1 = Delta * bn1

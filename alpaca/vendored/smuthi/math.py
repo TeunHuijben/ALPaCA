@@ -170,7 +170,7 @@ def legendre_normalized_numbed(ct, st, lmax):
 
 
 def jitted_prefactor(m):
-    """Returns the prefactor :math:`\sqrt(\frac{(2*m+1)}{2(2m)!} (2m-1)!!`
+    r"""Returns the prefactor :math:`\sqrt(\frac{(2*m+1)}{2(2m)!} (2m-1)!!`
     without using factorials nor bignum numbers, which makes it jittable.
 
     Args:
@@ -186,7 +186,7 @@ def jitted_prefactor(m):
 
 
 def prefactor_expansion(m):
-    """Expansion of :math:`\sqrt(\frac{(2*m+1)}{2(2m)!} (2m-1)!!` in the limit
+    r"""Expansion of :math:`\sqrt(\frac{(2*m+1)}{2(2m)!} (2m-1)!!` in the limit
     for large :math:`m`.
     The expansion converges very rapidly, so that taking the first 14 terms is
     enough to get every term with double precision down to :math:`m > 10`.

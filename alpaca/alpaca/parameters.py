@@ -42,6 +42,6 @@ class params_general:
 # Define a default parameter set for gold
 class params_gold(params_general):
     def __init__(self):
-        super().__init__(radius=100, lam=650)
+        super().__init__(radius=100, lam=680)
         self.epsilonIn          = eps.epsAu(self.lam)
 

@@ -1,17 +1,5 @@
 import numpy as np
 
-def angular_frequency(vacuum_wavelength):
-    """Angular frequency :math:`\omega = 2\pi c / \lambda`
-
-    Args:
-        vacuum_wavelength (float): Vacuum wavelength in length unit
-
-    Returns:
-        Angular frequency in the units of c=1 (time units=length units).
-        This is at the same time the vacuum wavenumber.
-    """
-    return 2 * np.pi / vacuum_wavelength
-
 def blocksize(l_max, m_max):
     """Number of coefficients in outgoing or regular spherical wave expansion for a single particle.
 
@@ -79,7 +67,7 @@ def multi_to_single_index(tau, l, m, l_max, m_max):
 
 
 def k_z(k_parallel=None, n_effective=None, k=None, omega=None, vacuum_wavelength=None, refractive_index=None):
-    """z-component :math:`k_z=\sqrt{k^2-\kappa^2}` of the wavevector. The branch cut is defined such that the imaginary
+    r"""z-component :math:`k_z=\sqrt{k^2-\kappa^2}` of the wavevector. The branch cut is defined such that the imaginary
     part is not negative, compare section 2.3.1 of [Egel 2018 dissertation].
     Not all of the arguments need to be specified.
 
