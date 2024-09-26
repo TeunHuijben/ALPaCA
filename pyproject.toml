@@ -18,7 +18,8 @@ classifiers = [
 ]
 license = {text = "MIT license"}
 dependencies = [
-  
+    "numpy>=1.21",
+    "scipy>=1.7"
 ]
 
 [project.optional-dependencies]
