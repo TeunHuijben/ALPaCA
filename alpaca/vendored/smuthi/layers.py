@@ -207,19 +207,6 @@ class LayerSystem:
         self.thicknesses[-1] = 0
         self.refractive_indices = [n for n in refractive_indices]
 
-    def is_degenerate(self):
-        """
-        Returns True if the layer system consists of only two layers of the same material. 
-        This function is useful for detecting if layer mediated coupling can be omitted
-        when calculating the coupling between particles. 
-            
-            
-        Returns: 
-            True if layer system is degenerate. False otherwise.
-        """
-        return (self.thicknesses == [0,0] and self.refractive_indices[0] == self.refractive_indices[-1])
-
-
     def number_of_layers(self):
         """Return total number of layers
 
@@ -355,18 +342,6 @@ class LayerSystem:
 
         return pwe_up, pwe_down
 
-    def wavenumber(self, layer_number, vacuum_wavelength):
-        """
-        Args:
-            layer_number (int): number of layer in question
-            vacuum_wavelength (float): vacuum wavelength
-
-        Returns:
-            wavenumber in that layer as float
-        """
-        return self.refractive_indices[layer_number] * flds.angular_frequency(vacuum_wavelength=vacuum_wavelength)
-
-
 def matrix_product(m1, m2):
     """
     Args:
@@ -381,18 +356,3 @@ def matrix_product(m1, m2):
     # elif isinstance(m1, np.ndarray) and isinstance(m2, np.ndarray):
         # return np.dot(m1, m2)
     return np.dot(m1, m2)
-
-
-def matrix_inverse(m):
-    """
-    Args:
-        m (mpmath.matrix or numpy.ndarray):    matrix to invert
-
-    Returns:
-        inverse of m with same data type as m1 and m2
-    """
-    # if isinstance(m, mpmath.matrix):
-    #     return m ** (-1)
-    # elif isinstance(m, np.ndarray):
-    #     return np.linalg.inv(m)
-    return np.linalg.inv(m)
