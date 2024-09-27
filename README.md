@@ -11,10 +11,12 @@ This repository contains code to calculate the analytical PSF for an emitter nea
 
 
 # Introduction
-The Analytical PSF Calculator (ALPaCA), uses an anaytical model to compute the light intensity on every camera pixel. The image below shows a schematic overview of the process of calculating the PSF of a dipole emitter next to a spherical nanoparticle.
+The Analytical PSF Calculator (ALPaCA), uses an analytical model to compute the light intensity on every camera pixel. The image below shows a schematic overview of the process of calculating the PSF of a dipole emitter next to a spherical nanoparticle.
+
 <div align="center">
     <img src="images/overview_PSF_model.jpg" width="75%"/>
 </div>
+
 *The process is composed of 6 steps: **a** calculation of the EM-fields in the water medium for a standard dipole, fixed in orientation and positioned on top of an NP, in terms of spherical waves, **b** rotation and interpolation of the fields to obtain the desired dipole position/orientation, **c** decomposition of the fields into plane waves, **d** refraction of the plane waves in the water-glass interface, **e** projection of the fields into the far-field, and **f** focusing the fields onto the camera. Schematics are not to scale.*
 
 Our analytical PSF model can be employed in a fitting procedure to study the surface distribution of single-stranded DNA on spherical dielectric and metallic NPs in 3D, as visually explained in the figure below. See our [paper](https://arxiv.org/abs/2306.08148) for more details. 
@@ -39,9 +41,9 @@ pip install .
 We have included three examples to get everyone started with the code: 
 1. calculate a PSF
 2. calculate PSFs for a range of settings
-3. fit an experimantel spot
+3. fit an experimental spot
 
-You can either clone and install the ALPaCA repository as explained above, or run them in Google Colab:
+You can either clone and install the ALPaCA repository as explained above or run them in Google Colab:
 
 - example 1:  <a target="_blank" href="https://colab.research.google.com/github/TeunHuijben/ALPaCA/blob/main/examples/colab_notebooks/example1_colab.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
@@ -58,7 +60,7 @@ You can either clone and install the ALPaCA repository as explained above, or ru
 
 # Citation
 
-If our analytical PSF is usefull for your research, please cite the paper:
+If our analytical PSF is useful for your research, please cite the paper:
 
 ```
 @article{huijben2023exact,
