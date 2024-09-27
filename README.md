@@ -27,6 +27,16 @@ We have included three examples to get everyone started with the code:
 2. calculate PSFs for a range of settings
 3. fit an experimantel spot
 
+You can either clone and install the ALPaCA repository as explained above, or run them in Google Colab:
+
+- example 1:  <a target="_blank" href="https://colab.research.google.com/github/TeunHuijben/ALPaCA/blob/main/examples/colab_notebooks/example1_colab.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+- example 2: <a target="_blank" href="https://colab.research.google.com/github/TeunHuijben/ALPaCA/blob/main/examples/colab_notebooks/example2_colab.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+- example 3: TODO
+
 
 # Citation
 
