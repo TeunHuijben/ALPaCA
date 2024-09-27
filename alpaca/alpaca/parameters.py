@@ -5,7 +5,7 @@ class params_general:
                  focus_overwrite=False, focus_overwrite_value=0, angleDipole=0, alpha=0, 
                  beta=0, gamma=0, dist_NP_glass=6, mode='solid', n_water=1.333, 
                  n_glass=1.52, l_max=10, m_max=3, N=100, r=1e9, M=100, NA=1.49, 
-                 z0=0, num_px=10):
+                 z0=0, num_px=10, px_size=65):
 
         #emitter
         self.lam                = lam           #wavelength
@@ -19,7 +19,7 @@ class params_general:
         self.radius             = radius
         self.d                  = d
         self.withoutParticle    = withoutParticle
-        self.mode = mode
+        self.mode               = mode
         self.epsilonIn          = eps.epsAu(self.lam)
 
         #microscope
@@ -27,8 +27,9 @@ class params_general:
         self.r                  = r             #radius of farfield hemisphere
         self.M                  = M             #magnification
         self.NA                 = NA            #numerical aperture
-        self.z0                 = z0            #defocus of the microscope
+        self.z0                 = z0            #defocus of the microscope (nm)
         self.num_px             = num_px        #number of pixels in the image
+        self.px_size            = px_size       #size of a pixel in the image (nm)
 
         #system
         self.epsilonM = epsilonM
@@ -44,4 +45,10 @@ class params_gold(params_general):
     def __init__(self):
         super().__init__(radius=100, lam=680)
         self.epsilonIn          = eps.epsAu(self.lam)
+
+# Define a default parameter set for polystryrene
+class params_polystyrene(params_general):
+    def __init__(self):
+        super().__init__(radius=500, lam=680)
+        self.epsilonIn          = (eps.nPSL(self.lam))**2
 

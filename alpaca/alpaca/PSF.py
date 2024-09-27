@@ -41,7 +41,7 @@ class PSFclass:
         
         # Other calculations
         self.epsilonIn = eps.epsAu(params.lam)
-        self.px_size = 65 * params.M
+        self.px_size = params.px_size * params.M
 
         self.radius_list = [params.radius]
         self.epsilon_list = [self.epsilonIn, params.epsilonM]
@@ -285,7 +285,6 @@ class PSFclass:
             focus = self.focus_overwrite_value
         else:
             focus = self.radius + self.dist_NP_glass  #nm
-        print('\t focus = ',focus,' nm')
 
         # xyz = dome around around (0,0,+focus)
         polar_wanted = np.linspace(0.501*np.pi,np.pi,self.N)      #pi/2>pi (pi/2 gives error in swe2pwe!)
