@@ -1,6 +1,6 @@
 Run the three examples in Google Colab by using the following buttons:
 
-- example 1: <a href="https://colab.research.google.com/github/TeunHuijben/ALPaCA/blob/main/examples/colab_notebooks/example1_colab.ipynb" target="_blank">
+- example 1: <a href="https://colab.research.google.com/github/TeunHuijben/ALPaCA/blob/main/examples/colab_notebooks/example1_colab.ipynb" target="_blank" rel="noopener noreferrer">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
