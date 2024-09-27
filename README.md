@@ -38,7 +38,7 @@ pip install .
 ```
 
 # Examples
-We have included three examples to get everyone started with the code: 
+We have included three [examples](/examples/) to get everyone started with the code: 
 1. calculate a PSF
 2. calculate PSFs for a range of settings
 3. fit an experimental spot
