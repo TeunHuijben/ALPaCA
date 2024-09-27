@@ -37,6 +37,8 @@ You can either clone and install the ALPaCA repository as explained above, or ru
 </a>
 - example 3: TODO
 
+(**Note:** When opening the notebook in Google Colab, you may see a warning that says "Warning: This notebook was not authored by Google." This is a standard security message from Google, and you can safely proceed by clicking "Run anyway."
+)
 
 # Citation
 
