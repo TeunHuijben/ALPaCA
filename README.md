@@ -12,11 +12,16 @@ This repository contains code to calculate the analytical PSF for an emitter nea
 
 # Introduction
 The Analytical PSF Calculator (ALPaCA), uses an anaytical model to compute the light intensity on every camera pixel. The image below shows a schematic overview of the process of calculating the PSF of a dipole emitter next to a spherical nanoparticle.
-<img src="images/overview_PSF_model.jpg" />
+<div align="center">
+    <img src="images/overview_PSF_model.jpg" width="75%"/>
+</div>
 *The process is composed of 6 steps: **a** calculation of the EM-fields in the water medium for a standard dipole, fixed in orientation and positioned on top of an NP, in terms of spherical waves, **b** rotation and interpolation of the fields to obtain the desired dipole position/orientation, **c** decomposition of the fields into plane waves, **d** refraction of the plane waves in the water-glass interface, **e** projection of the fields into the far-field, and **f** focusing the fields onto the camera. Schematics are not to scale.*
 
 Our analytical PSF model can be employed in a fitting procedure to study the surface distribution of single-stranded DNA on spherical dielectric and metallic NPs in 3D, as visually explained in the figure below. See our [paper](https://arxiv.org/abs/2306.08148) for more details. 
-<img src="images/overview_DNA_paint.jpg" />
+
+<div align="center">
+    <img src="images/overview_DNA_PAINT.jpg" width="75%"/>
+</div>
 
 
 # Installation
