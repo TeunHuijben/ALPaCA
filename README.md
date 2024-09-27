@@ -22,7 +22,7 @@ The Analytical PSF Calculator (ALPaCA), uses an analytical model to compute the 
 Our analytical PSF model can be employed in a fitting procedure to study the surface distribution of single-stranded DNA on spherical dielectric and metallic NPs in 3D, as visually explained in the figure below. See our [paper](https://arxiv.org/abs/2306.08148) for more details. 
 
 <div align="center">
-    <img src="images/overview_DNA_PAINT.jpg" width="75%"/>
+    <img src="images/overview_DNA_paint.jpg" width="75%"/>
 </div>
 
 
