@@ -4,11 +4,20 @@
 # ALPaCA
 This repository contains code to calculate the analytical PSF for an emitter near a spherical nanoparticle, as published in: **Point-spread function deformations unlock 3D localization microscopy on spherical nanoparticles [(arXiv)](https://arxiv.org/abs/2306.08148)**. 
 
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Examples](#examples)
+- [Citation](#citation)
+
+
+# Introduction
 The Analytical PSF Calculator (ALPaCA), uses an anaytical model to compute the light intensity on every camera pixel. The image below shows a schematic overview of the process of calculating the PSF of a dipole emitter next to a spherical nanoparticle.
 <img src="images/overview_PSF_model.jpg" />
-The process is composed of 6 steps: **a** calculation of the EM-fields in the water medium for a standard dipole, fixed in orientation and positioned on top of an NP, in terms of spherical waves, **b** rotation and interpolation of the fields to obtain the desired dipole position/orientation, **c** decomposition of the fields into plane waves, **d** refraction of the plane waves in the water-glass interface, **e** projection of the fields into the far-field, and **f** focusing the fields onto the camera. Schematics are not to scale.
+*The process is composed of 6 steps: **a** calculation of the EM-fields in the water medium for a standard dipole, fixed in orientation and positioned on top of an NP, in terms of spherical waves, **b** rotation and interpolation of the fields to obtain the desired dipole position/orientation, **c** decomposition of the fields into plane waves, **d** refraction of the plane waves in the water-glass interface, **e** projection of the fields into the far-field, and **f** focusing the fields onto the camera. Schematics are not to scale.*
 
-By fitting this PSF model to experimental images of single fluorophores located in 
+Our analytical PSF model can be employed in a fitting procedure to study the surface distribution of single-stranded DNA on spherical dielectric and metallic NPs in 3D, as visually explained in the figure below. See our [paper](https://arxiv.org/abs/2306.08148) for more details. 
+<img src="images/overview_DNA_paint.jpg" />
+
 
 # Installation
 If you want to run ALPaCA locally on your computer, use the following code to clone the repository and install the package. We recommend cloning and installing ALPaCA in a clean conda environment. Alternatively, you can leave out the first two lines, or run the code in via Google Colab (see examples below).
