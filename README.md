@@ -1,3 +1,4 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/TeunHuijben/ALPaCA/branch/main/graph/badge.svg?token=YOUR_TOKEN)](https://codecov.io/gh/TeunHuijben/ALPaCA)
 
 
