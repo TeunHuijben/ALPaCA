@@ -3,7 +3,7 @@
 
 
 # ALPaCA
-This repository contains code to calculate the analytical PSF for an emitter near a spherical nanoparticle, as published in: **Point-spread function deformations unlock 3D localization microscopy on spherical nanoparticles [(arXiv)](https://arxiv.org/abs/2306.08148)**. 
+This repository contains code to calculate the analytical PSF for an emitter near a spherical nanoparticle, as published in: **Point-spread function deformations unlock 3D localization microscopy on spherical nanoparticles ([ACS Nano](https://pubs.acs.org/doi/full/10.1021/acsnano.4c09719))**
 
 - [Introduction](#introduction)
 - [Installation](#installation)
@@ -20,7 +20,7 @@ The Analytical PSF Calculator (ALPaCA), uses an analytical model to compute the 
 
 *The process is composed of 6 steps: **a** calculation of the EM-fields in the water medium for a standard dipole, fixed in orientation and positioned on top of an NP, in terms of spherical waves, **b** rotation and interpolation of the fields to obtain the desired dipole position/orientation, **c** decomposition of the fields into plane waves, **d** refraction of the plane waves in the water-glass interface, **e** projection of the fields into the far-field, and **f** focusing the fields onto the camera. Schematics are not to scale.*
 
-Our analytical PSF model can be employed in a fitting procedure to study the surface distribution of single-stranded DNA on spherical dielectric and metallic NPs in 3D, as visually explained in the figure below. See our [paper](https://arxiv.org/abs/2306.08148) for more details. 
+Our analytical PSF model can be employed in a fitting procedure to study the surface distribution of single-stranded DNA on spherical dielectric and metallic NPs in 3D, as visually explained in the figure below. See our [paper](https://pubs.acs.org/doi/full/10.1021/acsnano.4c09719) for more details. 
 
 <div align="center">
     <img src="images/overview_DNA_paint.jpg" width="75%"/>
@@ -61,14 +61,15 @@ You can either clone and install the ALPaCA repository as explained above or run
 
 # Citation
 
-If our analytical PSF is useful for your research, please cite the paper:
+If our analytical PSF is useful for your research, please cite our [ACS Nano paper](https://pubs.acs.org/doi/full/10.1021/acsnano.4c09719):
 
 ```
-@article{huijben2023exact,
-  title={Exact particle-enhanced point-spread function unlocks 3D super-resolution localization microscopy on nanoparticles},
-  author={Huijben, Teun APM and Mahajan, Sarojini and Zijlstra, Peter and Marie, Rodolphe and Mortensen, Kim I},
-  journal={arXiv preprint arXiv:2306.08148},
-  year={2023}
+@article{huijben2024point,
+  title={Point-Spread Function Deformations Unlock 3D Localization Microscopy on Spherical Nanoparticles},
+  author={Huijben, Teun APM and Mahajan, Sarojini and Fahim, Masih and Zijlstra, Peter and Marie, Rodolphe and Mortensen, Kim I},
+  journal={ACS nano},
+  year={2024},
+  publisher={ACS Publications}
 }
 ```
 
