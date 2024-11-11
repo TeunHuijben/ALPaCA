@@ -54,7 +54,7 @@ You can either clone and install the ALPaCA repository as explained above or run
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-- example 3: TODO
+- example 3: _coming soon_
 
 (**Note:** When opening the notebook in Google Colab, you may see a warning that says "Warning: This notebook was not authored by Google." This is a standard security message from Google, and you can safely proceed by clicking "Run anyway."
 )
